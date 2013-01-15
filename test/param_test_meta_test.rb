@@ -46,13 +46,33 @@ class ParamTestMetaTest < ActiveSupport::TestCase
 
   test "uneven parameter lists fails" do
     assert_raise ArgumentError do
-      test_case = Class.new ActiveSupport::TestCase do
+      Class.new ActiveSupport::TestCase do
         param_test "%s %s",
           [[41, 42], [43], [44, 45]] do |first, second| end
       end
     end
   end
 
-  # TODO address parameter lists that reduce to same name
+  test "substitutes nil string for nil" do
+    test_case = Class.new ActiveSupport::TestCase do
+      param_test "params %s %s",
+        [[nil, nil]] do |param| end
+    end
+    assert_test_method_count test_case, 1
+    assert_has_test_method test_case, :test_params_nil_nil
+  end
+
+  test "generates unique test names" do
+    test_case = Class.new ActiveSupport::TestCase do
+      param_test "param %s",
+        [nil, "nil", "", " ", "\n  \t"] do |param| end
+    end
+    assert_test_method_count test_case, 5
+    assert_has_test_method test_case, :test_param_nil
+    assert_has_test_method test_case, :test_param_nil_1
+    assert_has_test_method test_case, :test_param_
+    assert_has_test_method test_case, :test_param_1
+    assert_has_test_method test_case, :test_param_2
+  end
 
 end

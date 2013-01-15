@@ -1,7 +1,7 @@
 param_test
 ==========
 
-*Parametrized unit tests for Ruby/ActiveSupport*
+**Parametrized unit tests for Ruby/ActiveSupport**
 
 This gem extends `ActiveSupport::TestCase` with a simple `param_test` class method that generates multiple tests with different parameters from a single code block.
 
@@ -21,7 +21,7 @@ In unit tests, you'll often want to run a set of the same assertions on multiple
 
     end
 
-*Don't do this!* This is almost always a bad idea. If this test fails you won't know at which of the 3 input parameters it failed. A failure will also prevent subsequent inputs from getting tested, masking other failures that you won't discover until later.
+**Don't do this!** This is almost always a bad idea. If this test fails you won't know at which of the 3 input parameters it failed. A failure will also prevent subsequent inputs from getting tested, masking other failures that you won't discover until later.
 
 `param_test` addresses these problems. The above test should be rewritten like this:
 

@@ -1,2 +1,2 @@
-require 'active_support/param_test'
+require 'param_test'
 require 'test/unit'

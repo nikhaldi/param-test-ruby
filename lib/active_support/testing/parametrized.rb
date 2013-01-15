@@ -2,7 +2,31 @@ module ActiveSupport
   module Testing
     module Parametrized
 
-      # TODO doc
+      # Generates parametrized tests, one for each set of parameters given.
+      # The description must be a format specification with the same number
+      # of substitutions as each parameter set has arguments (generally,
+      # just use one '%s' substitution per parameter). The body of the test
+      # is the given block executed with each parameter set.
+      #
+      # = Examples
+      #
+      # This code within an ActiveSupport::Testcase
+      #
+      #   param_test "string %s is ASCII only",
+      #   ["foo", "bar", "baz"] do |string|
+      #     assert string.ascii_only?
+      #   end
+      #
+      # Generates 3 test methods, one for each parameter given, with names
+      # based on the description.
+      #
+      # Another example with multiple parameters, generating 2 test methods:
+      #
+      #   param_test "%s is uppercase %s",
+      #   [["FOO", "foo"], ["BAR", "bar"]] do |expected, param|
+      #     assert_equal expected, param.upcase
+      #   end
+      #
       def param_test(description_template, parameters, &block)
         parameters.each do |param_set|
           # Replacing nil values with 'nil' string because nil values will

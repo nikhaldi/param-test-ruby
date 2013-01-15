@@ -11,4 +11,15 @@ class ParamTestTest < ActiveSupport::TestCase
     assert_equal first_param, second_param
   end
 
+  # Example from the rdoc string
+  param_test "string %s is ASCII only",
+  ["foo", "bar", "baz"] do |string|
+    assert string.ascii_only?
+  end
+
+  # 2nd example from the rdoc string
+  param_test "%s is uppercase %s",
+  [["FOO", "foo"], ["BAR", "bar"]] do |expected, param|
+    assert_equal expected, param.upcase
+  end
 end

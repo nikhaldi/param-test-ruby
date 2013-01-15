@@ -22,4 +22,13 @@ class ParamTestTest < ActiveSupport::TestCase
   [["FOO", "foo"], ["BAR", "bar"]] do |expected, param|
     assert_equal expected, param.upcase
   end
+
+  # Example from README.md
+  test "strings are ASCII only" do
+    ["foo", "bar", "baz"].each do |string|
+      # Bad programmer! Don't do this
+      assert string.ascii_only?
+    end
+  end
+
 end

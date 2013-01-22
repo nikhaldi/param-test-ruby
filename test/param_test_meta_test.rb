@@ -44,11 +44,20 @@ class ParamTestMetaTest < ActiveSupport::TestCase
     assert_has_test_method test_case, :test_with_two_params_43_44
   end
 
-  test "uneven parameter lists fails" do
+  test "too short parameter lists fails" do
     assert_raise ArgumentError do
       Class.new ActiveSupport::TestCase do
         param_test "%s %s",
           [[41, 42], [43], [44, 45]] do |first, second| end
+      end
+    end
+  end
+
+  test "too long parameter list fails" do
+    assert_raise ArgumentError do
+      Class.new ActiveSupport::TestCase do
+        param_test "%s %s",
+          [[41, 42, 43]] do |first, second| end
       end
     end
   end

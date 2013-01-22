@@ -30,6 +30,11 @@ module ActiveSupport
       def param_test(description_template, parameters, &block)
         param_count = format_sequence_count(description_template)
 
+        if param_count != block.arity
+          raise ArgumentError, "Number of arguments expected in description template " +
+            "'#{description_template}', doesn't match number of argument to block (#{block.arity})"
+        end
+
         parameters.each do |param_set|
           # Replacing nil values with 'nil' string because nil values will
           # get converted to an empty string within a test name.

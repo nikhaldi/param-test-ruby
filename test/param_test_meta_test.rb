@@ -13,7 +13,7 @@ class ParamTestMetaTest < ActiveSupport::TestCase
 
   test "empty parameters adds no tests" do
     test_case = Class.new ActiveSupport::TestCase do
-      param_test "adds no tests", [] do |param| end
+      param_test "adds no tests", [] do || end
     end
     assert_test_method_count test_case, 0
   end
@@ -44,20 +44,32 @@ class ParamTestMetaTest < ActiveSupport::TestCase
     assert_has_test_method test_case, :test_with_two_params_43_44
   end
 
-  test "too short parameter lists fails" do
+  param_test "mismatching parameter list %s fails for %s", [
+    [[[43]], "%s %s"],
+    [[[41, 42, 43]], "%s %s"],
+  ] do |params, description|
     assert_raise ArgumentError do
       Class.new ActiveSupport::TestCase do
-        param_test "%s %s",
-          [[41, 42], [43], [44, 45]] do |first, second| end
+        param_test description,
+          params do |first, second| end
       end
     end
   end
 
-  test "too long parameter list fails" do
+  test "wrong block arity fails" do
     assert_raise ArgumentError do
       Class.new ActiveSupport::TestCase do
         param_test "%s %s",
-          [[41, 42, 43]] do |first, second| end
+          [[41, 42]] do |first| end
+      end
+    end
+  end
+
+  test "more wrong block arity fails" do
+    assert_raise ArgumentError do
+      Class.new ActiveSupport::TestCase do
+        param_test "%s %s",
+          [[41, 42]] do |first, second, third| end
       end
     end
   end
@@ -65,7 +77,7 @@ class ParamTestMetaTest < ActiveSupport::TestCase
   test "substitutes nil string for nil" do
     test_case = Class.new ActiveSupport::TestCase do
       param_test "params %s %s",
-        [[nil, nil]] do |param| end
+        [[nil, nil]] do |first, second| end
     end
     assert_test_method_count test_case, 1
     assert_has_test_method test_case, :test_params_nil_nil

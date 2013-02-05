@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Nik Haldimann']
   s.email       = ['nhaldimann@gmail.com']
   s.homepage    = 'https://github.com/nikhaldi/param-test-ruby'
-  s.summary     = 'Parametrized unit tests for Ruby/ActiveSupport'
-  s.description = 'Parametrized unit tests for Ruby/ActiveSupport'
+  s.summary     = 'Parameterized unit tests for Ruby/ActiveSupport'
+  s.description = 'Parameterized unit tests for Ruby/ActiveSupport'
 
   s.add_runtime_dependency 'activesupport', '~> 3.2'
   s.add_development_dependency 'rake'

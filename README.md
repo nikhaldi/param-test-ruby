@@ -1,7 +1,7 @@
 param_test
 ==========
 
-**Parametrized unit tests for Ruby/ActiveSupport**
+**Parameterized unit tests for Ruby/ActiveSupport**
 
 This gem extends `ActiveSupport::TestCase` with a simple `param_test` class method that generates multiple tests with different parameters from a single code block.
 

@@ -8,7 +8,7 @@ class ParamTestMetaTest < ActiveSupport::TestCase
   end
 
   def assert_has_test_method(clazz, expected_method_name)
-    assert_include clazz.instance_methods, expected_method_name
+    assert_includes clazz.instance_methods, expected_method_name
   end
 
   test "empty parameters adds no tests" do

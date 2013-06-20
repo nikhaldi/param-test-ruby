@@ -60,7 +60,16 @@ For better readability, any `nil` parameters will be string substituted as a `"n
 
 ## Installation
 
-    gem install param_test
+If using Rails 4, add to your Gemfile:
+
+    gem 'param_test', '~> 0.1.0'
+
+If using Rails 3.2, add to your Gemfile:
+
+    gem 'param_test', '~> 0.0.2'
+
+(Since you generally only use param_test in tests, you probably want to add this to
+the group `:test` in your Gemfile.)
 
 
 ## License

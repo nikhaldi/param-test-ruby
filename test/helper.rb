@@ -1,2 +1,2 @@
 require 'param_test'
-require 'test/unit'
+require 'minitest/autorun'

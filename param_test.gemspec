@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'param_test'
-  s.version     = '0.1.1'
+  s.version     = '0.2.0.rc1'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Nik Haldimann']
   s.email       = ['nhaldimann@gmail.com']
@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Parameterized unit tests for Ruby/ActiveSupport'
   s.description = 'Parameterized unit tests for Ruby/ActiveSupport'
 
-  s.add_runtime_dependency 'activesupport', '~> 4.0'
+  s.add_runtime_dependency 'activesupport', '~> 5.0'
   s.add_development_dependency 'rake'
 
   s.files         = `git ls-files`.split("\n")

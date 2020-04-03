@@ -60,6 +60,10 @@ For better readability, any `nil` parameters will be string substituted as a `"n
 
 ## Installation
 
+If using Rails 5.x, add to your Gemfile:
+
+    gem 'param_test', '~> 0.2.0'
+
 If using Rails 4.x, add to your Gemfile:
 
     gem 'param_test', '~> 0.1.1'

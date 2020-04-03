@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'param_test'
-  s.version     = '0.2.0.rc1'
+  s.version     = '0.2.0'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Nik Haldimann']
   s.email       = ['nhaldimann@gmail.com']
